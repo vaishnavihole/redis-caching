@@ -16,5 +16,8 @@
   "bugs": {
     "url": "https://github.com/vaishnavihole/redis-caching/issues"
   },
-  "homepage": "https://github.com/vaishnavihole/redis-caching#readme"
+  "homepage": "https://github.com/vaishnavihole/redis-caching#readme",
+  "dependencies": {
+    "express": "^4.18.2"
+  }
 }
