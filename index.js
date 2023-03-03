@@ -18,6 +18,8 @@ function getRepos(req, res, next) {
     try{
         console.log('Fetching Data...');
 
+    const  { username } = req.params;
+
     
 
     }catch (err) {
