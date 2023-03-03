@@ -15,7 +15,15 @@ const app = express();
 
 // make request to Github for data
 function getRepos(req, res, next) {
+    try{
+        console.log('Fetching Data...');
+
     
+
+    }catch (err) {
+        console.log(err);
+        res.status(500)
+    }
 }
 app.get('/reops/:username', getRepos)
 
