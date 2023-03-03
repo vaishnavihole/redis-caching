@@ -1,15 +1,19 @@
-const  express = require('express');
-const fetch  = require('node-fetch');
-const  redis = require('redis');
+
+import express from 'express';
+import fetch from 'node-fetch';
+import redis from 'redis';
+import dotenv from 'dotenv'
+dotenv.config();
 
 
 const PORT = process.env.PORT || 5000;
-const REDIS_PORT = process.env.PORT || 6379;
 
-const client = redis.createClient(REDIS_PORT);
 
-const app = express()
+const client =  redis.createClient({
+    url: process.env.REDIS_URL
+})
+const app = express();
 
 app.listen(5000, ()=> {
-    console.log('App listening on port 3000📦')
+    console.log(`App listening on port ${PORT}`);
 });
