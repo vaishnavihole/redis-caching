@@ -23,14 +23,20 @@ async function getRepos(req, res, next) {
     const response = await fetch(`https://api.github.com/users/${username}`)
 
     const data = await response.json();
+    const repos = data.public_reops;
 
-    res.send(data);
+    // set data to Redis 
+client.setEx(username, 3600,repos);
+
+
+    res.send(setResponse(username, repos));
     }catch (err) {
         console.log(err);
         res.status(500)
     }
 }
 app.get('/reops/:username', getRepos)
+
 
 app.listen(5000, ()=> {
     console.log(`App listening on port ${PORT}`);
