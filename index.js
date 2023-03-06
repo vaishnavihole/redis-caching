@@ -25,7 +25,12 @@ async function getRepos(req, res, next) {
     const data = await response.json();
     const repos = data.public_reops;
 
-    // set data to Redis 
+
+// Set Response
+function  setResponse(username, repos) {
+     return `<h2>${username} has ${repos} Github repos</h2>`;
+}
+// set data to Redis 
 client.setEx(username, 3600,repos);
 
 
