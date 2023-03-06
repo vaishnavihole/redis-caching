@@ -40,7 +40,24 @@ client.setEx(username, 3600,repos);
         res.status(500)
     }
 }
-app.get('/reops/:username', getRepos)
+
+// Cache middleware
+  function cache(req, res, next) {
+    const { username } = req.params;
+
+    client.get(username, (err, data) =>{
+        if(err) throw err;
+
+        if(data !==null){
+            res.send(setResponse (username, data))
+        }else{
+            next();
+        }
+    })
+  }
+
+
+app.get('/reops/:username',cache, getRepos)
 
 
 app.listen(5000, ()=> {
